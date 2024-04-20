@@ -7,6 +7,7 @@
 
 
 {% block 'body' %}
+
  <div class="container-fluid">
  <div class="row">
  <div class="col-md d-flex justify-content-center">
@@ -14,7 +15,7 @@
  <br>
  <br>
  <section class="cont-logo">
- <img class="logo" src="#">
+ <img src="{% static 'geral/img/logo.png' %}" alt="Logo">
  <label class="text-logo">HEALING</label>
  </section>
  <hr>
@@ -27,7 +28,6 @@
  <br>
 <label for="">E-mail</label>
  <input type="text" name="email" id="" placeholder="email@email.com" class="form-control">
-Aula 1 4
  <br>
 <div class="row">
  <div class="col-md">
@@ -46,8 +46,7 @@ Aula 1 4
  </div>
  </div>
  <div class="col-md bg-main d-flex justify-content-center align-items-center">
- <img src="#" alt="">
- </div>
+    <img src="{% static 'usuarios/img/ilustracao.png' %}" alt=""> </div>
  </div>
  </div>
 {% endblock 'body' %}
