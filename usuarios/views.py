@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -26,4 +27,14 @@ def cadastro(request):
         if len(senha) < 6:
             return redirect("/usuarios/cadastro")
 
-        return HttpResponse(f"{username}- {email}- {senha}- {confirmar_senha}")
+        # verifica e filtra se o campo username ja existe no banco de dados, caso exista, redireiona navamente para cadastro.html
+        users = User.objects.filter(username=username)
+        if users.exists():
+            return redirect("/usuarios/cadastro")
+
+        # pega os dados username, email e senha digitados no cadastro.html e coloca na tabela criada pelo django
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=senha,
+        )
