@@ -77,3 +77,9 @@ def login_view(request):
             return redirect("pacientes/home")
         messages.add_message(request, constants.ERROR, "Usuario ou Senha inválidos")
         return redirect("/usuarios/login")
+
+
+# desloga o usuario e redireciona ele para a pagina usuario/login
+def sair(request):
+    auth.logout(request)
+    return redirect("/usuarios/login")
