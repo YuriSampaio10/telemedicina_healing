@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.messages import constants
 from django.contrib import messages
+from django.contrib import auth
 
 # Create your views here.
 
@@ -59,5 +60,20 @@ def cadastro(request):
 
 
 def login_view(request):
-     if request.method == "GET":
+    if request.method == "GET":
         return render(request, "login.html")
+    elif request.method == "POST":
+        # pega os dados do dicionario post do campo username la do cadastro.html
+        username = request.POST.get("username")
+        # pega os dados do dicionario post do campo senha la do cadastro.html
+        senha = request.POST.get("senha")
+
+        # verifica no banco de dados se as credenciais username e senha existem nele, se exister ele retorna uma instancia do usuario para a variavel user, caso não, vai retornar none
+        user = auth.authenticate(request, username=username, password=senha)
+
+        # pega o usuario e atrela a reuisição login e redireciona a home dos pacientes
+        if user:
+            auth.login(request, user)
+            return redirect("pacientes/home")
+        messages.add_message(request, constants.ERROR, "Usuario ou Senha inválidos")
+        return redirect("/usuarios/login")

@@ -16,27 +16,31 @@
  </section>
  <hr>
 
- <form action="#" method="POST">
- <h2 class="fonte-destaque1">Logar</h2>
- {% if messages %}
- <br>
- {% for message in messages %}
- <section class="alert {{message.tags}}">
- {{message}}
- </section>
- {% endfor %}
- {% endif %}
- <br>
- <label for="">Username</label>
- <input type="text" name="username" id="" class="form-control" placeholder="Username ...">
- <br>
+
+{% comment %} {% csrf_token %} garante proteção contra ataques de falsificação de formularios {% endcomment %}
+{% comment %} {% url "login" %} pega o name da url la no urls.py do app usuarios {% endcomment %}
+
+ <form action="{% url "login" %}" method="POST"> {% csrf_token %}
+    <h2 class="fonte-destaque1">Logar</h2>
+    {% if messages %}
+    <br>
+    {% for message in messages %}
+    <section class="alert {{message.tags}}">
+    {{message}}
+    </section>
+    {% endfor %}
+    {% endif %}
+    <br>
+    <label for="">Username</label>
+    <input type="text" name="username" id="" class="form-control" placeholder="Username ...">
+    <br>
 
 
- <label for="">Senha</label>
- <input type="password" name="senha" class="form-control" placeholder="Digite sua senha ...">
- <br>
- <input type="submit" value="Logar" class="btn btn-success btn-dark-color">
- <a href="{% url 'cadastro' %}" class="btn btn-dark-color-outline">Não possuo uma conta</a>
+    <label for="">Senha</label>
+    <input type="password" name="senha" class="form-control" placeholder="Digite sua senha ...">
+    <br>
+    <input type="submit" value="Logar" class="btn btn-success btn-dark-color">
+    <a href="{% url 'cadastro' %}" class="btn btn-dark-color-outline">Não possuo uma conta</a>
  </form>
  </div>
  </div>
