@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.messages import constants
+from django.contrib import messages
 
 # Create your views here.
 
@@ -21,15 +23,31 @@ def cadastro(request):
 
         # confirmar se a senha e a confirmar_senha são iguais
         if senha != confirmar_senha:
+            messages.add_message(
+                request, constants.ERROR, "A senha e o Confirmar senha devem ser iguais"
+            )
+            return redirect("/usuarios/cadastro")
+
+        # verifica se o endereço de email possui um @
+        if "@" not in email:
+            messages.add_message(
+                request, constants.ERROR, "O endereço de e-mail deve conter '@'."
+            )
             return redirect("/usuarios/cadastro")
 
         # verifica se a senha tem menos de 6 digitos
         if len(senha) < 6:
+            messages.add_message(
+                request, constants.ERROR, "A senha deve ter mais de 6 digitos"
+            )
             return redirect("/usuarios/cadastro")
 
         # verifica e filtra se o campo username ja existe no banco de dados, caso exista, redireiona navamente para cadastro.html
         users = User.objects.filter(username=username)
         if users.exists():
+            messages.add_message(
+                request, constants.ERROR, "Ja existe um usuario com esse nome"
+            )
             return redirect("/usuarios/cadastro")
 
         # pega os dados username, email e senha digitados no cadastro.html e coloca na tabela criada pelo django
