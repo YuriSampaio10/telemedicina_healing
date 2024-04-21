@@ -56,3 +56,8 @@ def cadastro(request):
             email=email,
             password=senha,
         )
+
+
+def login_view(request):
+     if request.method == "GET":
+        return render(request, "login.html")
