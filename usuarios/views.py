@@ -20,7 +20,10 @@ def cadastro(request):
 
         # confirmar se a senha e a confirmar_senha são iguais
         if senha != confirmar_senha:
-            print("erro, senhas diferentes")
+            return redirect("/usuarios/cadastro")
+
+        # verifica se a senha tem menos de 6 digitos
+        if len(senha) < 6:
             return redirect("/usuarios/cadastro")
 
         return HttpResponse(f"{username}- {email}- {senha}- {confirmar_senha}")
