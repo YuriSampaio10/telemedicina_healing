@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Especialidades, DadosMedico
+from .models import Especialidades, DadosMedico, is_medico
 from django.contrib.messages import constants
 from django.contrib import messages
 
@@ -7,6 +7,13 @@ from django.contrib import messages
 
 
 def cadastro_medico(request):
+ 
+
+    # puxa da função do models.py e verifica se o usuario ja é medico e não permite ele criar um novo perfil de medico se ja for
+    if is_medico(request.user):
+        messages.add_message(request, constants.WARNING, "Você já é médico!")
+        return redirect("/medicos/abrir_horario")
+
     if request.method == "GET":
         # acessa os dados da tablea Especialidades do banco de dados e devolve todos os dados para a variavel especialidade, fazendo assim que possamos usar esse dados no template
         especialidades = Especialidades.objects.all()
@@ -62,4 +69,4 @@ def cadastro_medico(request):
         messages.add_message(
             request, constants.SUCCESS, "Cadastro médico realizado com sucesso"
         )
-        return redirect("/medico/abrir_horario")
+        return redirect("/medicos/abrir_horario")
