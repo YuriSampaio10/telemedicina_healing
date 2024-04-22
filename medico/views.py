@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Especialidades, DadosMedico
+from django.contrib.messages import constants
+from django.contrib import messages
 
 # Create your views here.
 
@@ -45,13 +47,16 @@ def cadastro_medico(request):
             rua=rua,
             bairro=bairro,
             numero=numero,
-            cim=cim,
             rg=rg,
+            cedula_identidade_medica=cim,
             foto=foto,
-            especialidade_id=especialidade,
+            user=request.user,
             descricao=descricao,
+            especialidade_id=especialidade,
             valor_consulta=valor_consulta,
         )
 
         # salva tudo no banco de dados
         dados_medico.save()
+
+       
