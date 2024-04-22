@@ -18,3 +18,8 @@ class DadosMedico(models.Model):
     rua = models.CharField(max_length=15)
     bairro = models.CharField(max_length=15)
     numero = models.IntegerField()
+    rg = models.ImageField(upload_to="rgs")
+    cedulas_identidade_medica= models.ImageField(upload_to="cim")
+    foto = models.ImageField(upload_to="fotos_perfil")
+    descricao = models.TextField()
+    valor_consulta = models.FloatField(default=100)
