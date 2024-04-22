@@ -59,4 +59,7 @@ def cadastro_medico(request):
         # salva tudo no banco de dados
         dados_medico.save()
 
-       
+        messages.add_message(
+            request, constants.SUCCESS, "Cadastro médico realizado com sucesso"
+        )
+        return redirect("/medico/abrir_horario")
