@@ -9,7 +9,6 @@ from django.contrib import auth
 
 
 def cadastro(request):
-    print(request.method)
     if request.method == "GET":
         return render(request, "cadastro.html")
     elif request.method == "POST":
