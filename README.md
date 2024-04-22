@@ -26,6 +26,6 @@ ___
 
  <div align="center">Desenvolvedores/Contribuintes :octocat:
 
- <div align="center"> | [<img src="https://avatars.githubusercontent.com/u/102839085?s=400&u=ca12d62cdc893b83486100dc979f339f05ac5865&v=4" width=115  align="center"><br><sub>Yuri Nogueira Sampaio</sub>](https://github.com/YuriSampaio10)
-| :---: |
+| [<img src="https://avatars.githubusercontent.com/u/102839085?s=400&u=ca12d62cdc893b83486100dc979f339f05ac5865&v=4" width=115  align="center"><br><sub>Yuri Nogueira Sampaio</sub>](https://github.com/YuriSampaio10)
+| :---: | </div>
 
