@@ -17,5 +17,4 @@ class DadosMedico(models.Model):
     cep = models.CharField(max_length=15)
     rua = models.CharField(max_length=15)
     bairro = models.CharField(max_length=15)
-    numero = models.models.IntegerField()
-
+    numero = models.IntegerField()
