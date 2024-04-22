@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Especialidades
+from .models import Especialidades, DadosMedico
 
 # Create your views here.
 
@@ -36,3 +36,22 @@ def cadastro_medico(request):
         descricao = request.POST.get("descricao")
         # pega os dados do dicionario post do campo valor_consulta la do cadastro_medico.html
         valor_consulta = request.POST.get("valor_consulta")
+
+        # pega esses dados do cadastro_medico da view que puxamos do cadastro_medico.html e adiciona eles aos campos que estão no DadosMedicos la do models.py do app medicos atraves desse impoert
+        dados_medico = DadosMedico(
+            crm=crm,
+            nome=nome,
+            cep=cep,
+            rua=rua,
+            bairro=bairro,
+            numero=numero,
+            cim=cim,
+            rg=rg,
+            foto=foto,
+            especialidade_id=especialidade,
+            descricao=descricao,
+            valor_consulta=valor_consulta,
+        )
+
+        # salva tudo no banco de dados
+        dados_medico.save()
