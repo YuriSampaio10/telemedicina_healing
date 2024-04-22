@@ -9,3 +9,13 @@ class Especialidades(models.Model):
     # Pesquisar
     def __str__(self):
         return self.especialidade
+
+
+class DadosMedico(models.Model):
+    CRM = models.CharField(max_length=30)
+    nome = models.CharField(max_length=100)
+    cep = models.CharField(max_length=15)
+    rua = models.CharField(max_length=15)
+    bairro = models.CharField(max_length=15)
+    numero = models.models.IntegerField()
+
