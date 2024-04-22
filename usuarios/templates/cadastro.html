@@ -22,7 +22,7 @@
 
             {% comment %} {% csrf_token %} garante proteção contra ataques de falsificação de formularios {% endcomment
             %}
-            {% comment %} {% url "cadastro" %} pega o name da url la no urls.py do app usuarios {% endcomment %}
+            {% comment %} {% url "cadastro" %} pega o name da url la no urls.py do app usuarios e envia esses dados que o usuario preencheu {% endcomment %}
 
             <form action="{% url " cadastro" %}" method="POST"> {% csrf_token %}
                <h2 class="fonte-destaque1">Cadastre-se</h2>

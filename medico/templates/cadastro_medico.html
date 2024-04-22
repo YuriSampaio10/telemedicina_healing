@@ -23,7 +23,11 @@
             {% endfor %}
             {% endif %}
             <br>
-            <form action="#" method="post" enctype='multipart/form-data'>
+
+            {% comment %} {% csrf_token %} garante proteção contra ataques de falsificação de formularios {% endcomment
+            %}
+            {% comment %} {% url "cadastro_medico" %} pega o name da url la no urls.py do app medico e envia esses dados que o usuario preencheu {% endcomment %}
+            <form action="{% url "cadastro_medico" %}" method="post" enctype='multipart/form-data'> {% csrf_token %}
                 <div class="row">
                     <div class="col-md">
                         <label for="">CRM:</label>
@@ -71,6 +75,7 @@
                 <label for="">Especialidade médica</label>
                 <select name="especialidade" class="form-select" id="">
 
+                    {% comment %} para a especialidade no na tabela especialidade, ele vai buscar o id dela e imprimi-lá no option {% endcomment %}
                     {% for especialidade in especialidades %}
                     <option value="{{especialidade.id}}">{{especialidade}}</option>
                    {% endfor %}
